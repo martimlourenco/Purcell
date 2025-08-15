@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purcell - Refinaria de Ouro Premium</title>
+    <meta name="description" content="Purcell - Líder em refinamento de ouro com tecnologia de ponta e serviços premium para investidores e colecionadores.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body class="font-inter bg-gray-900 text-white overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-playfair font-bold text-yellow-400">Purcell</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-yellow-400 transition-colors duration-300">Início</a>
+                    <a href="#about" class="nav-link text-white hover:text-yellow-400 transition-colors duration-300">Sobre</a>
+                    <a href="#services" class="nav-link text-white hover:text-yellow-400 transition-colors duration-300">Serviços</a>
+                    <a href="#process" class="nav-link text-white hover:text-yellow-400 transition-colors duration-300">Processo</a>
+                    <a href="#contact" class="nav-link text-white hover:text-yellow-400 transition-colors duration-300">Contato</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-gray-800 bg-opacity-95 backdrop-blur-sm" id="mobile-menu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#home" class="block text-white hover:text-yellow-400 transition-colors duration-300">Início</a>
+                <a href="#about" class="block text-white hover:text-yellow-400 transition-colors duration-300">Sobre</a>
+                <a href="#services" class="block text-white hover:text-yellow-400 transition-colors duration-300">Serviços</a>
+                <a href="#process" class="block text-white hover:text-yellow-400 transition-colors duration-300">Processo</a>
+                <a href="#contact" class="block text-white hover:text-yellow-400 transition-colors duration-300">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="floating-particles"></div>
+            <div class="gradient-bg"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-playfair font-bold mb-6 leading-tight" data-aos="fade-up">
+                    <span class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+                        Purcell
+                    </span>
+                    <br>
+                    <span class="text-white">Refinaria de Ouro</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Excelência em refinamento de ouro com tecnologia de ponta e tradição centenária
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 glow-button">
+                        Nossos Serviços
+                    </button>
+                    <button class="border-2 border-yellow-400 text-yellow-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-yellow-400 hover:text-gray-900 transition-all duration-300">
+                        Saiba Mais
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-6">
+                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                        Sobre a Purcell
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Há mais de 50 anos no mercado, somos referência em refinamento de ouro e metais preciosos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="relative">
+                        <div class="gold-card p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-4 text-yellow-400">Nossa História</h3>
+                            <p class="text-gray-300 leading-relaxed mb-6">
+                                Fundada em 1970, a Purcell nasceu com o compromisso de oferecer os mais altos padrões de qualidade no refinamento de ouro. Nossa trajetória é marcada pela inovação constante e pela busca incessante pela perfeição.
+                            </p>
+                            <p class="text-gray-300 leading-relaxed">
+                                Hoje, somos reconhecidos internacionalmente pela pureza de nossos produtos e pela excelência de nossos serviços, atendendo desde pequenos investidores até grandes instituições financeiras.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="stat-card text-center p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-yellow-400 mb-2 counter" data-target="50">0</div>
+                            <div class="text-gray-300">Anos de Experiência</div>
+                        </div>
+                        <div class="stat-card text-center p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-yellow-400 mb-2 counter" data-target="99.99">0</div>
+                            <div class="text-gray-300">% de Pureza</div>
+                        </div>
+                        <div class="stat-card text-center p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-yellow-400 mb-2 counter" data-target="10000">0</div>
+                            <div class="text-gray-300">+ Clientes Satisfeitos</div>
+                        </div>
+                        <div class="stat-card text-center p-6 rounded-xl">
+                            <div class="text-3xl font-bold text-yellow-400 mb-2 counter" data-target="24">0</div>
+                            <div class="text-gray-300">Horas de Atendimento</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-6">
+                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                        Nossos Serviços
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Oferecemos uma gama completa de serviços especializados em metais preciosos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Refinamento de Ouro</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Processo de refinamento com tecnologia de ponta para garantir a máxima pureza do ouro, atingindo padrões internacionais de qualidade.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Análise e Avaliação</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Análise precisa da composição e pureza dos metais preciosos utilizando equipamentos de última geração e técnicas avançadas.
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Fundição Personalizada</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Serviços de fundição sob medida para criar barras, moedas e peças personalizadas de acordo com suas especificações.
+                    </p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"/>
+                            <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Armazenamento Seguro</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Cofres de alta segurança com certificação internacional para armazenamento de metais preciosos com total tranquilidade.
+                    </p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h4v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm8 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Certificação</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Emissão de certificados de pureza e autenticidade reconhecidos internacionalmente para todos os nossos produtos.
+                    </p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">Consultoria Especializada</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Consultoria especializada em investimentos em metais preciosos com acompanhamento personalizado e estratégias exclusivas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-6">
+                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                        Nosso Processo
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Um processo rigoroso e transparente que garante a máxima qualidade em cada etapa
+                </p>
+            </div>
+            
+            <div class="relative">
+                <!-- Process Timeline -->
+                <div class="process-timeline">
+                    <!-- Step 1 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="100">
+                        <div class="process-number">1</div>
+                        <div class="process-content">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400">Recebimento e Análise</h3>
+                            <p class="text-gray-300">Recebemos seu material e realizamos uma análise detalhada para determinar composição e pureza inicial.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="process-step" data-aos="fade-left" data-aos-delay="200">
+                        <div class="process-number">2</div>
+                        <div class="process-content">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400">Preparação</h3>
+                            <p class="text-gray-300">Preparação do material através de processos químicos e físicos adequados para cada tipo de metal.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="300">
+                        <div class="process-number">3</div>
+                        <div class="process-content">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400">Refinamento</h3>
+                            <p class="text-gray-300">Processo de refinamento utilizando tecnologia de ponta para atingir a pureza desejada.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="process-step" data-aos="fade-left" data-aos-delay="400">
+                        <div class="process-number">4</div>
+                        <div class="process-content">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400">Controle de Qualidade</h3>
+                            <p class="text-gray-300">Rigoroso controle de qualidade para garantir que o produto final atenda aos mais altos padrões.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="process-step" data-aos="fade-right" data-aos-delay="500">
+                        <div class="process-number">5</div>
+                        <div class="process-content">
+                            <h3 class="text-xl font-bold mb-2 text-yellow-400">Certificação e Entrega</h3>
+                            <p class="text-gray-300">Emissão de certificados e entrega segura do produto final com todas as garantias de qualidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-6">
+                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                        Entre em Contato
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Pronto para começar? Entre em contato conosco e descubra como podemos ajudar
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div data-aos="fade-right">
+                    <form class="contact-form space-y-6">
+                        <div>
+                            <input type="text" placeholder="Seu Nome" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-yellow-400 focus:outline-none transition-colors duration-300">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Seu Email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-yellow-400 focus:outline-none transition-colors duration-300">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Seu Telefone" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-yellow-400 focus:outline-none transition-colors duration-300">
+                        </div>
+                        <div>
+                            <textarea rows="4" placeholder="Sua Mensagem" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-yellow-400 focus:outline-none transition-colors duration-300 resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 glow-button">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div data-aos="fade-left">
+                    <div class="space-y-8">
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-yellow-400 mb-2">Email</h3>
+                                <p class="text-gray-300">contato@purcell.com.br</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-yellow-400 mb-2">Telefone</h3>
+                                <p class="text-gray-300">+55 (11) 99999-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-yellow-400 mb-2">Endereço</h3>
+                                <p class="text-gray-300">Av. Paulista, 1000<br>São Paulo, SP - Brasil</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                            <div class="contact-icon">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-yellow-400 mb-2">Horário</h3>
+                                <p class="text-gray-300">24 horas por dia<br>7 dias por semana</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-playfair font-bold text-yellow-400">Purcell</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Excelência em refinamento de ouro há mais de 50 anos, oferecendo qualidade e confiança para nossos clientes.
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">Links Rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Início</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Sobre</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Serviços</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-400 transition-colors duration-300">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">Serviços</h3>
+                    <ul class="space-y-2">
+                        <li><span class="text-gray-400">Refinamento de Ouro</span></li>
+                        <li><span class="text-gray-400">Análise e Avaliação</span></li>
+                        <li><span class="text-gray-400">Fundição Personalizada</span></li>
+                        <li><span class="text-gray-400">Armazenamento Seguro</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">Contato</h3>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">contato@purcell.com.br</li>
+                        <li class="text-gray-400">+55 (11) 99999-9999</li>
+                        <li class="text-gray-400">Av. Paulista, 1000<br>São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Purcell Refinaria de Ouro. Todos os direitos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
