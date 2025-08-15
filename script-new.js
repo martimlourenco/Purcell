@@ -35,9 +35,16 @@ function initNavigation() {
     if (!mobileMenuButton || !mobileMenu) return;
     
     // Mobile menu toggle
-    mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
+    mobileMenuButton.addEventListener('click', function(e) {
         const hamburger = this.querySelector('.hamburger');
+        
+        // Create gold burst effect
+        createGoldBurst(e.currentTarget);
+        
+        // Toggle mobile menu
+        mobileMenu.classList.toggle('hidden');
+        
+        // Toggle hamburger animation
         if (hamburger) {
             hamburger.classList.toggle('active');
         }
@@ -77,6 +84,57 @@ function initNavigation() {
             navbar.classList.remove('scrolled');
         }
     });
+}
+
+// Gold Burst Effect Function
+function createGoldBurst(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    // Create burst container
+    const burst = document.createElement('div');
+    burst.className = 'gold-burst';
+    burst.style.left = centerX + 'px';
+    burst.style.top = centerY + 'px';
+    document.body.appendChild(burst);
+    
+    // Create multiple particles
+    for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'gold-particle';
+        
+        // Random direction and distance
+        const angle = (i * 30) + Math.random() * 20; // More spread
+        const distance = 40 + Math.random() * 60; // Random distance
+        const size = 3 + Math.random() * 3; // Random size
+        
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Calculate end position
+        const endX = Math.cos(angle * Math.PI / 180) * distance;
+        const endY = Math.sin(angle * Math.PI / 180) * distance;
+        
+        particle.style.setProperty('--end-x', endX + 'px');
+        particle.style.setProperty('--end-y', endY + 'px');
+        
+        // Add particle to burst
+        burst.appendChild(particle);
+        
+        // Trigger animation with delay
+        setTimeout(() => {
+            particle.classList.add('animate');
+            particle.style.transform = `translate(${endX}px, ${endY}px)`;
+        }, i * 50);
+    }
+    
+    // Clean up after animation
+    setTimeout(() => {
+        if (burst.parentNode) {
+            burst.remove();
+        }
+    }, 1500);
 }
 
 // Counter Animation
