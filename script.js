@@ -1,3 +1,4 @@
+// Modern Purcell Website - Simplified and Functional
 // DOM Elements
 const navbar = document.getElementById('navbar');
 const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -6,37 +7,320 @@ const navLinks = document.querySelectorAll('.nav-link');
 const counters = document.querySelectorAll('.counter');
 const contactForm = document.querySelector('.contact-form');
 
-// Initialize AOS (Animate On Scroll)
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100,
-        easing: 'ease-out-cubic'
-    });
-    
-    // Initialize all functions
     initNavigation();
-    initScrollEffects();
     initCounters();
-    initParticles();
-    initSmoothScrolling();
     initContactForm();
-    initTypingEffect();
-    initGoldParticles();
-    initCursorEffect();
+    initScrollEffects();
+    initAnimations();
+    
+    // Hide loading screen after a delay
+    setTimeout(() => {
+        hideLoadingScreen();
+    }, 1500);
 });
 
-// Navigation Functions
+// Loading Screen
+function hideLoadingScreen() {
+    const loading = document.querySelector('.loading');
+    if (loading) {
+        loading.style.opacity = '0';
+        setTimeout(() => loading.remove(), 500);
+    }
+}
+
+// Navigation
 function initNavigation() {
+    if (!mobileMenuButton || !mobileMenu) return;
+    
     // Mobile menu toggle
     mobileMenuButton.addEventListener('click', function() {
         mobileMenu.classList.toggle('hidden');
-        
-        // Animate hamburger to X
-        const icon = this.querySelector('svg');
-        icon.style.transform = mobileMenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        const hamburger = this.querySelector('.hamburger');
+        if (hamburger) {
+            hamburger.classList.toggle('active');
+        }
     });
+    
+    // Smooth scroll for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // Close mobile menu
+            mobileMenu.classList.add('hidden');
+            const hamburger = mobileMenuButton.querySelector('.hamburger');
+            if (hamburger) {
+                hamburger.classList.remove('active');
+            }
+        });
+    });
+    
+    // Navbar scroll effect
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Add scrolled class
+        if (scrollTop > 80) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+}
+
+// Counter Animation
+function initCounters() {
+    if (counters.length === 0) return;
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+}
+
+function animateCounter(counter) {
+    const target = parseFloat(counter.getAttribute('data-target') || '0');
+    const duration = 2000;
+    const start = performance.now();
+    
+    function updateCounter(timestamp) {
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const current = progress * target;
+        
+        if (target === 99.99) {
+            counter.textContent = current.toFixed(2);
+        } else if (target >= 1000) {
+            counter.textContent = Math.floor(current).toLocaleString();
+        } else {
+            counter.textContent = Math.floor(current);
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+        }
+    }
+    
+    requestAnimationFrame(updateCounter);
+}
+
+// Contact Form
+function initContactForm() {
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitButton = this.querySelector('button[type="submit"]');
+        if (!submitButton) return;
+        
+        const buttonText = submitButton.querySelector('span');
+        if (!buttonText) return;
+        
+        const originalText = buttonText.textContent;
+        
+        // Loading state
+        buttonText.textContent = 'ENVIANDO...';
+        submitButton.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+            buttonText.textContent = originalText;
+            submitButton.disabled = false;
+        }, 2000);
+    });
+}
+
+// Notification System
+function showNotification(message) {
+    // Remove any existing notification
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = 'notification fixed top-8 right-8 z-50 p-6 bg-black border border-yellow-400 text-white max-w-md transform translate-x-full transition-transform duration-500';
+    notification.innerHTML = `
+        <div class="flex items-start space-x-3">
+            <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+            <p class="text-sm font-light">${message}</p>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Animate out and remove
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 500);
+    }, 4000);
+}
+
+// Scroll Effects
+function initScrollEffects() {
+    // Progress bar
+    const progressBar = document.createElement('div');
+    progressBar.className = 'fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 z-50 transform scale-x-0 origin-left transition-transform duration-100';
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', () => {
+        const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        progressBar.style.transform = `scaleX(${scrollPercent})`;
+    });
+}
+
+// Basic Animations
+function initAnimations() {
+    // Fade in animation for elements
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+                fadeObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements that should fade in
+    const elementsToAnimate = document.querySelectorAll('.service-item, .stat-item, .process-content-left, .process-content-right, .section-title, .section-subtitle');
+    elementsToAnimate.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        fadeObserver.observe(el);
+    });
+}
+
+// Keyboard Navigation
+document.addEventListener('keydown', (e) => {
+    // Escape key closes mobile menu
+    if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        const hamburger = mobileMenuButton.querySelector('.hamburger');
+        if (hamburger) {
+            hamburger.classList.remove('active');
+        }
+    }
+});
+
+// Add CSS for animations
+const style = document.createElement('style');
+style.textContent = `
+    .animate-fade-in {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+    
+    .loading {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+    }
+    
+    .loading-content {
+        text-align: center;
+    }
+    
+    .loading-bar {
+        width: 16rem;
+        height: 0.25rem;
+        background: #1f2937;
+        border-radius: 9999px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+    
+    .loading-progress {
+        height: 100%;
+        background: linear-gradient(to right, #fbbf24, #f59e0b);
+        border-radius: 9999px;
+        width: 100%;
+        animation: loading-fill 1.5s ease-in-out;
+    }
+    
+    @keyframes loading-fill {
+        0% { width: 0%; }
+        100% { width: 100%; }
+    }
+    
+    #navbar.scrolled {
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+    }
+    
+    .hamburger {
+        transition: transform 0.3s ease;
+    }
+    
+    .hamburger.active {
+        transform: rotate(180deg);
+    }
+`;
+document.head.appendChild(style);
+
+// Add loading screen if it doesn't exist
+if (!document.querySelector('.loading')) {
+    const loading = document.createElement('div');
+    loading.className = 'loading';
+    loading.innerHTML = `
+        <div class="loading-content">
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="text-yellow-400 text-sm font-light">CARREGANDO REFINARIA PURCELL</p>
+        </div>
+    `;
+    document.body.appendChild(loading);
+}
     
     // Close mobile menu when clicking on links
     navLinks.forEach(link => {
@@ -70,7 +354,7 @@ function initNavigation() {
         
         updateActiveNavigation();
     });
-}
+
 
 function updateActiveNavigation() {
     const sections = document.querySelectorAll('section[id]');
@@ -487,42 +771,3 @@ function preloadResources() {
 
 // Initialize preloading
 preloadResources();
-
-// Easter egg - Konami Code
-let konamiCode = [];
-const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
-
-document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.keyCode);
-    
-    if (konamiCode.length > konamiSequence.length) {
-        konamiCode.shift();
-    }
-    
-    if (konamiCode.length === konamiSequence.length && 
-        konamiCode.every((code, index) => code === konamiSequence[index])) {
-        
-        // Easter egg activated
-        document.body.style.filter = 'hue-rotate(180deg)';
-        showNotification('🎉 Código Konami ativado! A Purcell agradece!', 'success');
-        
-        setTimeout(() => {
-            document.body.style.filter = 'none';
-        }, 5000);
-        
-        konamiCode = [];
-    }
-});
-
-// Service Worker Registration (for PWA capabilities)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-                console.log('SW registered: ', registration);
-            })
-            .catch((registrationError) => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
