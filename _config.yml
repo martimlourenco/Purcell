@@ -1,45 +1,17 @@
-# GitHub Pages Configuration
+# GitHub Pages Configuration for Static Site
 
 # Site settings
-title: "Purcell - Refinaria de Ouro"
-description: "Excelência em refinamento de ouro com tecnologia de ponta e tradição centenária"
-url: "https://seuusuario.github.io"
-baseurl: "/purcell"
+title: "Purcell - Refinaria de Ouro Premium"
+description: "Excelência em refinamento de ouro com tecnologia de ponta desde 2025"
+url: "https://martimlourenco.github.io"
+baseurl: "/Purcell"
 
-# Build settings
-markdown: kramdown
-highlighter: rouge
-permalink: pretty
+# Language
+lang: pt
 
-# Plugins
-plugins:
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-# SEO
-lang: pt-BR
-author: "Purcell Refinaria de Ouro"
-
-# Social
-social:
-  - platform: email
-    link: "mailto:contato@purcell.com.br"
-  - platform: phone
-    link: "tel:+5511999999999"
-
-# Exclude files
+# Exclude files from processing
 exclude:
   - README.md
   - favicon-generator.html
-  - node_modules/
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - vendor/
-
-# Include files
-include:
-  - _pages
-  - assets
+  - .vscode/
+  - .git/
